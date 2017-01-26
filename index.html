@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>form validation with hyperform</title>
+    <style>
+      div {
+        margin: 1rem 0;
+        transition: opacity 0.5s ease 0s;
+      }
+
+      input:valid {
+        background-color: white;
+        border: 1px solid black;
+      }
+      input:valid + .error {
+        opacity: 0;
+      }
+
+      input:invalid:not([formnovalidate]) {
+        background-color: pink;
+        border: 1px solid red;
+      }
+      input:invalid:not([formnovalidate]) + .error {
+        opacity: 1;
+      }
+
+      .error {
+        color: red;
+        opacity: 0;
+        transition: opacity 0.5s ease 0s;
+      }
+
+      .hidden {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="GET" name="main">
+      <div>
+        <label>age*
+          <input type="text" name="age" pattern="^\d+$" required>
+          <span class="error">error</span>
+        </label>
+      </div>
+
+      <div>
+        <label>email*
+          <input type="email" name="email1" required>
+        </label>
+        <br>
+        <label>re:email*
+          <input type="email" name="email2" required>
+        </label>
+      </div>
+
+      <div>
+        <label><input type="radio" name="switch">1</label>
+        <label><input type="radio" name="switch">2</label>
+      </div>
+
+      <div class="hidden">
+        <label>name*
+          <input type="text" name="name" pattern="^[a-zA-Z]+$" required formnovalidate>
+          <span class="error">error</span>
+        </label>
+      </div>
+
+      <hr>
+
+      <input type="submit" value="send">
+    </form>
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="hyperform.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
